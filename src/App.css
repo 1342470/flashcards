@@ -1,22 +1,10 @@
-.App {
-  text-align: center;
+header {
+  display: inline;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
+body {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -24,15 +12,63 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+a {
+  text-decoration: none;
+  font-family: "ff-meta-web-pro", sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  position: relative;
+}
+
+/* text to go over the container class which hovers over images such as the homepage and subjects*/
+.welcomeText {
+  position: absolute;
+  bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.267);
+  padding-left: 20px;
+  padding-right: 20px;
+  color: rgb(255, 255, 255);
+}
+
+
+
+#WelcomeImg{
+  width: 100%;
+
+}
+
+/*used to style to div navation bar */
+.topnav {
+  margin: 1px;
+  padding: 1px;
+  width: auto;
+  overflow: hidden;
+  text-align: center;
+
+
+}
+
+
+/*moblie*/
+@media screen and (max-width: 653px) and (min-height:400px) {
+
+
+  body {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
   }
-  to {
-    transform: rotate(360deg);
-  }
+
+
 }

@@ -1,17 +1,23 @@
-import logo from './res/1_AJk55yyiWpZfDHlS2BPj9g.jpeg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
+import Home from "./Home";
+import Set1 from "./Set1";
+import Set2 from "./Set2";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        
-        <h1>Flashcards</h1>
 
-      </header>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Set1" element={<Set1 />} />
+          <Route path="/Set2" element={<Set2 />} />
+        </Routes>
+      </Router>
 
- </div>
   );
-}
+};
 
 export default App;
+
