@@ -13,9 +13,11 @@ const Home = (props) => {
                 <div className="welcomeText">
                     <h1>Flashcards</h1>
                     <p>A quick a easy way to remember for a upcoming test click on the following options to go to the quiz try to reach the score to win but be carefull miss to many quesions and your lose</p>
-                    <div class="topnav" role="navigation" aria-label="navigation bar" id="myTopnav">
+                    <div className="topnav" role="navigation" aria-label="navigation bar" id="myTopnav">
                         <button onClick={() => navigate("/Set1")}>Go to first set</button>
-                        <button onClick={() => navigate("/Set2")}>Go to first set</button>
+                        <button onClick={() => navigate("/Set2")}>Go to second set</button>
+                        
+
                     </div> 
                 </div>
             </div>
