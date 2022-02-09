@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Fragment } from "react/cjs/react.production.min";
 
 var score = 0;
 var numOfQuesses = 3;
@@ -27,6 +28,8 @@ class QuestionsItem {
   }
 };
 
+
+
 const q1 = new QuestionsItem("The acronym cd-rom stands for Compact disc read only memory.", "True");
 const q2 = new QuestionsItem("A computer can directly understand a high-level language", "False");
 const q3 = new QuestionsItem("The term for all kinds of harmful software is called an virus", "True");
@@ -35,31 +38,11 @@ const q3 = new QuestionsItem("The term for all kinds of harmful software is call
 let questionList = [q1, q2, q3];
 
 
-// console.log(questionList[currentQuestion]);
-
-function changeQuestion() {
-  document.getElementById('questions_view').innerText = questionList[currentQuestion].question;
-}
-
-function setscore() {
-  document.getElementById('score').innerText = "Current score:" + score;
-
-}
-
-function setSkips() {
-  document.getElementById('skips').innerText = "Skips left:" +skips;
-}
-
-function setQuesses() {
-  document.getElementById('numOfGuesses').innerText = "Quesses left:" + numOfQuesses;
-}
-
-
 function countdown() {
-  if (numOfQuesses == 0) {
+  if (numOfQuesses === 0) {
     currentQuestion = (currentQuestion + 1) % questionList.length;
     changeQuestion();
-    if (numOfQuesses == 0) {
+    if (numOfQuesses === 0) {
       numOfQuesses = 4;
     }
   }
@@ -77,6 +60,7 @@ function checkAnswer(clicked) {
   } else {
     countdown();
     numOfQuesses--;
+    setQuesses();
     score--;
 
   }
@@ -91,6 +75,7 @@ function skip() {
     currentQuestion = (currentQuestion + 1) % questionList.length;
     changeQuestion();
     skips--;
+    setSkips();
   }
 
 
@@ -105,15 +90,14 @@ const Contact = (props) => {
       <h1>FlashCard set one</h1>
 
 
-      <div id="score">Score:</div>
-      <div id="skips">Skips left:</div>
-      <div id="numOfGuesses">Quesses left:</div>
-      <div id="questions_view">Question</div>
-
-
-      <button onClick={() => checkAnswer("True")}>True</button>
-      <button onClick={() => checkAnswer("False")}>False</button>
-      <button onClick={() => skip()}>Skip Question</button>
+      <div id="score"></div>
+      <div id="skips"></div>
+      <div id="numOfGuesses"></div>
+      <div id="questions_view">This set will test your knowledge on a variety of computing subjects. Once your ready select the start below </div>
+      <button id = "startbtn" onClick={() => startgame()}>Start</button>
+      <button id = "truebtn" onClick={() => checkAnswer("True")}>True</button>
+      <button id = "falsebtn" onClick={() => checkAnswer('False')}> False</button >
+      <button id = "skipbtn" onClick={() => skip()}>Skip Question</button>
       <hr></hr>
 
       <button onClick={() => navigate(-1)}>Go Back</button>
@@ -122,7 +106,40 @@ const Contact = (props) => {
 };
 export default Contact;
 
-setscore();
-setSkips();
-setQuesses();
-changeQuestion();
+
+function changeQuestion() {
+  document.getElementById('questions_view').innerText = questionList[currentQuestion].question;
+}
+
+function setscore() {
+  document.getElementById('score').innerText = "Current score:" + score;
+}
+
+function setSkips() {
+  document.getElementById('skips').innerText = "Skips left:" + skips;
+}
+
+function setQuesses() {
+  document.getElementById('numOfGuesses').innerText = "Quesses left:" + numOfQuesses;
+}
+
+function startgame() {
+
+  if (document.readyState === 'loading') {  // Loading hasn't finished yet
+    document.addEventListener('DOMContentLoaded', setUI());
+  } else {  // `DOMContentLoaded` has already fired
+    setUI();
+  }
+  document.getElementById('startbtn').style.visibility = "hidden";
+  document.getElementById('truebtn').style.visibility = "visible";
+  document.getElementById('falsebtn').style.visibility = "visible";
+  document.getElementById('skipbtn').style.visibility = "visible";
+  
+}
+
+function setUI() {
+  setscore();
+  setSkips();
+  setQuesses();
+  changeQuestion();
+}
