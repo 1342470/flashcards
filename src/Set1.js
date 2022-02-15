@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 
 var score = 0;
-var numOfQuesses = 3;
 var currentQuestion = 0;
 var skips = 3;
 
@@ -32,11 +31,11 @@ class QuestionsItem {
 
 const q1 = new QuestionsItem("The acronym cd-rom stands for Compact disc read only memory.", "True");
 const q2 = new QuestionsItem("A computer can directly understand a high-level language", "False");
-const q3 = new QuestionsItem("The term for all kinds of harmful software is called an virus", "True");
+const q3 = new QuestionsItem("The term for all kinds of harmful software is called an virus", "False");
 const q4 = new QuestionsItem("By downloading Ram you computer will have more memory", "False");
-const q5 = new QuestionsItem("C++ is a much slower language to use due to the way it builds", "False");
+const q5 = new QuestionsItem("Java is a slower language to use due to the way it builds", "True");
 const q6 = new QuestionsItem("HTML is a type of Ide", "False");
-const q7 = new QuestionsItem("The acronym html doesn't stand for high text media language but instead hypertext markup language ", "False");
+const q7 = new QuestionsItem("The acronym html doesn't stand for high text media language but instead hypertext markup language ", "True");
 const q8 = new QuestionsItem("Css is only used for the styling of a webpage", "True");
 const q9 = new QuestionsItem("Javascipt is a type of scripting lanuage", "True");
 
@@ -47,13 +46,10 @@ let questionList = [q1, q2, q3, q4, q5, q6, q7, q8, q9];
 
 
 function countdown() {
-  if (numOfQuesses === 0) {
     currentQuestion = (currentQuestion + 1) % questionList.length;
     changeQuestion();
-    if (numOfQuesses === 0) {
-      numOfQuesses = 4;
-    }
-  }
+
+  
 }
 
 
@@ -63,13 +59,10 @@ function checkAnswer(clicked) {
   if (clicked === correct) {
     currentQuestion = (currentQuestion + 1) % questionList.length;
     score++;
-    numOfQuesses = 3;
     changeQuestion();
 
   } else {
     countdown();
-    numOfQuesses--;
-    setQuesses();
     score--;
 
   }
@@ -97,8 +90,10 @@ const Contact = (props) => {
     checkAnswer("True");
     if (score === 10) {
       navigate("/Win")
+      score = 0;
     } else if (score < 0) {
       navigate("/Lose")
+      score = 0;
     }
   }
 
@@ -106,8 +101,10 @@ const Contact = (props) => {
     checkAnswer("False");
     if (score === 10) {
       navigate("/Win")
+      score = 0;
     } else if (score < 0) {
       navigate("/Lose")
+      score = 0;
     }
   }
 
@@ -121,7 +118,6 @@ const Contact = (props) => {
 
       <div id="score"></div>
       <div id="skips"></div>
-      <div id="numOfGuesses"></div>
       <div id="questions_view">This set will test your knowledge on a variety of computing subjects. Once your ready select the start below </div>
       <button id="startbtn" onClick={() => startgame()}>Start</button>
       <div class="buttonElementsContainer">
@@ -150,9 +146,6 @@ function setSkips() {
   document.getElementById('skips').innerText = "Skips left:" + skips;
 }
 
-function setQuesses() {
-  document.getElementById('numOfGuesses').innerText = "Quesses left:" + numOfQuesses;
-}
 
 function startgame() {
 
@@ -171,6 +164,5 @@ function startgame() {
 function setUI() {
   setscore();
   setSkips();
-  setQuesses();
   changeQuestion();
 }

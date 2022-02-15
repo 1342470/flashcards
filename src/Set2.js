@@ -91,6 +91,50 @@ function skip() {
 const Contact = (props) => {
   const navigate = useNavigate();
 
+  function checkWinA() {
+    checkAnswer("A");
+    if (score === 10) {
+      navigate("/Win");
+      score = 0;
+    } else if (score < 0) {
+      navigate("/Lose");
+      score = 0;
+    }
+  }
+
+  function checkWinB() {
+    checkAnswer("B");
+    if (score === 10) {
+      navigate("/Win");
+      score = 0;
+    } else if (score < 0) {
+      navigate("/Lose");
+      score = 0;
+    }
+  }
+
+  function checkWinC() {
+    checkAnswer("C");
+    if (score === 10) {
+      navigate("/Win");
+      score = 0;
+    } else if (score < 0) {
+      navigate("/Lose");
+      score = 0;
+    }
+  }
+
+  function checkWinD() {
+    checkAnswer("D");
+    if (score === 10) {
+      navigate("/Win");
+      score = 0;
+    } else if (score < 0) {
+      navigate("/Lose");
+      score = 0;
+    }
+  }
+
   return (
 
     <>
@@ -103,10 +147,10 @@ const Contact = (props) => {
       <div id="questions_view">This set will test your knowledge on a variety of computing subjects. Once your ready select the start below </div>
       <button id="startbtn" onClick={() => startgame()}>Start</button>
       <div class="buttonElementsContainer">
-        <button id="Abtn" onClick={() => checkAnswer("A")}>A</button>
-        <button id="Bbtn" onClick={() => checkAnswer('B')}> B</button >
-        <button id="Cbtn" onClick={() => checkAnswer('C')}> C</button >
-        <button id="Dbtn" onClick={() => checkAnswer('D')}> D</button >
+        <button id="Abtn" onClick={() => checkWinA("A")}>A</button>
+        <button id="Bbtn" onClick={() => checkWinB('B')}> B</button >
+        <button id="Cbtn" onClick={() => checkWinC('C')}> C</button >
+        <button id="Dbtn" onClick={() => checkWinD('D')}> D</button >
         <button id="skipbtn" onClick={() => skip()}>Skip Question</button></div>
       <hr></hr>
       <button onClick={() => navigate(-1)}>Go Back</button>

@@ -9,7 +9,7 @@ const Home = (props) => {
         <>
         <h1>You Won</h1>
         <p>Congratulations you won would you like to play again</p>
-        <button onClick={() => navigate("./Set1")}>Play again?</button>
+        <button onClick={() => navigate(-1)}>Play again?</button>
         <button onClick={() => navigate(-2)}>Go Back</button>
 </>
 
