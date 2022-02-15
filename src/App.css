@@ -12,11 +12,10 @@ body {
   color: white;
 }
 
-button{
+#startbtn{
   display: block;
   margin-left: auto;
   margin-right: auto;
-
 }
 
 #truebtn{
@@ -24,6 +23,22 @@ button{
 }
 
 #falsebtn{
+  visibility: hidden;
+}
+
+#Abtn{
+  visibility: hidden;
+}
+
+#Bbtn{
+  visibility: hidden;
+}
+
+#Cbtn{
+  visibility: hidden;
+}
+
+#Dbtn{
   visibility: hidden;
 }
 
@@ -45,10 +60,19 @@ h1 {
   position: relative;
 }
 
+.buttonElementsContainer {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 /* text to go over the container class which hovers over images such as the homepage and subjects*/
 .welcomeText {
-  position: absolute;
-  bottom: 20px;
+  position: relative;
+  bottom: 500px;
   background-color: rgba(0, 0, 0, 0.267);
   padding-left: 20px;
   padding-right: 20px;
@@ -79,6 +103,14 @@ text-align: center;
 /*moblie*/
 @media screen and (max-width: 653px) and (min-height:400px) {
 
+  .welcomeText {
+    position: absolute;
+    bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.267);
+    padding-left: 20px;
+    padding-right: 20px;
+    color: rgb(255, 255, 255);
+  }
 
   body {
     background-color: #282c34;
@@ -89,6 +121,15 @@ text-align: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+  }
+
+  .buttonElementsContainer {
+    margin: 0;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 
 

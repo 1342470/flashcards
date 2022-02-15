@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Fragment } from "react/cjs/react.production.min";
+
 
 var score = 0;
 var numOfQuesses = 3;
 var currentQuestion = 0;
 var skips = 3;
-var questions_view = document.getElementById('questions_view');
+
 
 
 class QuestionsItem {
@@ -33,9 +33,17 @@ class QuestionsItem {
 const q1 = new QuestionsItem("The acronym cd-rom stands for Compact disc read only memory.", "True");
 const q2 = new QuestionsItem("A computer can directly understand a high-level language", "False");
 const q3 = new QuestionsItem("The term for all kinds of harmful software is called an virus", "True");
+const q4 = new QuestionsItem("By downloading Ram you computer will have more memory", "False");
+const q5 = new QuestionsItem("C++ is a much slower language to use due to the way it builds", "False");
+const q6 = new QuestionsItem("HTML is a type of Ide", "False");
+const q7 = new QuestionsItem("The acronym html doesn't stand for high text media language but instead hypertext markup language ", "False");
+const q8 = new QuestionsItem("Css is only used for the styling of a webpage", "True");
+const q9 = new QuestionsItem("Javascipt is a type of scripting lanuage", "True");
 
 
-let questionList = [q1, q2, q3];
+
+
+let questionList = [q1, q2, q3, q4, q5, q6, q7, q8, q9];
 
 
 function countdown() {
@@ -48,10 +56,11 @@ function countdown() {
   }
 }
 
+
 //checks answer from use when the user clicker either the true or valse button it will send a value to this funciton to compear to the anwser inside the questions array
 function checkAnswer(clicked) {
   var correct = questionList[currentQuestion].checkAnswer();
-  if (clicked == correct) {
+  if (clicked === correct) {
     currentQuestion = (currentQuestion + 1) % questionList.length;
     score++;
     numOfQuesses = 3;
@@ -71,7 +80,7 @@ function checkAnswer(clicked) {
  * allows the player to skip a question if the user selects this option it will move to the next question and take one of the value of skip until the player has no skips remaining
  */
 function skip() {
-  if (skips != 0) {
+  if (skips !== 0) {
     currentQuestion = (currentQuestion + 1) % questionList.length;
     changeQuestion();
     skips--;
@@ -84,6 +93,26 @@ function skip() {
 const Contact = (props) => {
   const navigate = useNavigate();
 
+  function checkWinTrue() {
+    checkAnswer("True");
+    if (score === 10) {
+      navigate("/Win")
+    } else if (score < 0) {
+      navigate("/Lose")
+    }
+  }
+
+  function checkWinFalse() {
+    checkAnswer("False");
+    if (score === 10) {
+      navigate("/Win")
+    } else if (score < 0) {
+      navigate("/Lose")
+    }
+  }
+
+
+
   return (
 
     <>
@@ -94,13 +123,15 @@ const Contact = (props) => {
       <div id="skips"></div>
       <div id="numOfGuesses"></div>
       <div id="questions_view">This set will test your knowledge on a variety of computing subjects. Once your ready select the start below </div>
-      <button id = "startbtn" onClick={() => startgame()}>Start</button>
-      <button id = "truebtn" onClick={() => checkAnswer("True")}>True</button>
-      <button id = "falsebtn" onClick={() => checkAnswer('False')}> False</button >
-      <button id = "skipbtn" onClick={() => skip()}>Skip Question</button>
+      <button id="startbtn" onClick={() => startgame()}>Start</button>
+      <div class="buttonElementsContainer">
+        <button id="truebtn" onClick={() => checkWinTrue()}>True</button>
+        <button id="falsebtn" onClick={() => checkWinFalse()}> False</button >
+        <button id="skipbtn" onClick={() => skip()}>Skip Question</button>
+      </div>
       <hr></hr>
-
       <button onClick={() => navigate(-1)}>Go Back</button>
+
     </>
   );
 };
@@ -134,7 +165,7 @@ function startgame() {
   document.getElementById('truebtn').style.visibility = "visible";
   document.getElementById('falsebtn').style.visibility = "visible";
   document.getElementById('skipbtn').style.visibility = "visible";
-  
+
 }
 
 function setUI() {
