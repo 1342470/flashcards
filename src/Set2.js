@@ -6,7 +6,6 @@ var score = 0;
 var numOfQuesses = 3;
 var currentQuestion = 0;
 var skips = 3;
-var questions_view = document.getElementById('questions_view');
 
 
 class QuestionsItem {
